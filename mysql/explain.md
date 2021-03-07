@@ -1,6 +1,9 @@
 # EXPLAIN
 > 提供有关MySQL如何执行语句的信息
-###### 语法
+
+### 支持sql语句
+>  SELECT， DELETE， INSERT， REPLACE, UPDATE
+### 语法
 
 ```
 {EXPLAIN | DESCRIBE | DESC}
@@ -29,7 +32,7 @@ explainable_stmt: {
   | UPDATE statement
 }
 ```
-###### 举例
+### 举例
 ```
 -- 展示表信息
 EXPLAIN `user`;
@@ -44,7 +47,7 @@ EXPLAIN `user` 'u%';
 EXPLAIN FORMAT=JSON select * from `user` where username = 'test';
 
 ```
-###### EXPLAIN输出列含义
+### EXPLAIN输出列含义
 
 ![EXPLAIN输出列](https://github.com/jsjchai/study-notes/blob/master/2019/mysql/EXPLAIN/EXPLAIN%E8%BE%93%E5%87%BA%E5%88%97.png)
 * id (JSON name: select_id)
