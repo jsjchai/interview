@@ -83,7 +83,7 @@ WHERE class_num IN (SELECT class_num FROM roster);
 * 插入索引：（1×索引数）
 * 闭幕：（1）
 ##### 假设是b树索引，表的大小会使索引插入的速度降低log N
-##### 加快插入速度
+##### 插入速度优化
 * 如果要同时从同一客户端插入许多行，请使用INSERT 具有多个VALUES列表的语句一次插入多个行。这比使用单独的单行INSERT 语句要快得多（某些情况下要快很多倍）。如果要将数据添加到非空表，则可以调整 bulk_insert_buffer_size 变量以使数据插入更快
 * 从文本文件加载表格时，请使用 LOAD DATA。这通常比使用INSERT语句快20倍 
 * 利用列具有默认值的事实。仅当要插入的值与默认值不同时才明确插入值。这减少了MySQL必须执行的解析并提高了插入速度
@@ -93,4 +93,9 @@ WHERE class_num IN (SELECT class_num FROM roster);
   * 如果FOREIGN KEY表中有约束，则可以通过在导入会话的持续时间内关闭外键检查来加快表的导入
   * 在具有自动增量列的表中进行批量插入时，请设置 innodb_autoinc_lock_mode为2而不是默认值1
   * 执行批量插入时，按PRIMARY KEY顺序插入行会更快
-
+##### update速度优化
+* update语句的优化与SELECT查询类似，只是增加了写操作的额外开销。写的速度取决于要更新的数据量和要更新的索引数量。没有更改的索引不会被更新
+* 延迟更新，然后在随后连续进行许多更新。在锁定表时，同时执行多个更新要比一次执行一个更新快得多
+##### delete速度优化
+* 为了更快地删除行，可以通过增加key_buffer_size系统变量来增加键缓存的大小
+* 如果要从表中删除所有行，可以使用TRUNCATE table tbl_name比delete from tbl_name快
