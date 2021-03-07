@@ -45,4 +45,4 @@
 * 如果二级索引记录被标记为删除，或者二级索引页被更新的事务更新， 则不使用覆盖索引技术。而不是从索引结构中返回值，而是InnoDB在聚集索引中查找记录
 
 ## InnoDB架构
-[InnoDB架构](https://dev.mysql.com/doc/refman/5.6/en/images/innodb-architecture.png)
+![InnoDB架构](https://dev.mysql.com/doc/refman/5.6/en/images/innodb-architecture.png)
