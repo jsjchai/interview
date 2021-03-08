@@ -139,6 +139,7 @@
 * 应用程序类加载器（Application ClassLoader）
 
 ### 双亲委派模型
+![类加载器双亲委派模型](https://github.com/jsjchai/interview/blob/main/java/img/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.jpg)
 
 
 
