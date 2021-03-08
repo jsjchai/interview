@@ -130,6 +130,23 @@
 * OSGI
 * 热部署
 * 代码加密
+#### 类型
+* Bootstrap ClassLoader c++实现
+* java.lang.ClassLoader java内部实现、
+#### 分类
+* 启动类加载器（Bootstrap ClassLoader）
+* 扩展类加载器（Extension ClassLoader）
+* 应用程序类加载器（Application ClassLoader）
+
+### 双亲委派模型
+```flow
+s=start:开始
+e=end:结束
+o=operation:操作项
+
+s-o-e
+```
+
 
 ### jvm调优
 * OOM(OutOfMemoryError)
