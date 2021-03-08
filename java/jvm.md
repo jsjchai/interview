@@ -139,13 +139,7 @@
 * 应用程序类加载器（Application ClassLoader）
 
 ### 双亲委派模型
-```flow
-s=start:开始
-e=end:结束
-o=operation:操作项
 
-s-o-e
-```
 
 
 ### jvm调优
