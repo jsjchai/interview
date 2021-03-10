@@ -1,3 +1,5 @@
+## jvm
+> JVM是可运行Java代码的假想计算机,包括一套字节码指令集、一组寄存器、一个栈、一个垃圾回收，堆和一个存储方法域。JVM 是运行在操作系统之上的，它与硬件没有直接的交互
 ## JDK8 Memory Model
 ![img](https://github.com/jsjchai/study-notes/blob/master/2019/jvm/img/jvm%E8%BF%90%E8%A1%8C%E6%A6%82%E8%BF%B0.png)
 ### 运行时数据区
