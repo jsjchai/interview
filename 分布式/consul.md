@@ -8,3 +8,6 @@
 * K-V
 * 安全的服务通信：Consul可以为服务生成和分发TLS证书
 * 多数据中心
+* CAP - [CP](https://www.consul.io/docs/intro/vs/serf)
+
+### 
