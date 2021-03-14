@@ -25,6 +25,7 @@
   * autocommit
   * 事务隔离级别和SET TRANSACTION语句
   * InnoDB 锁定 的底层细节。可以在INFORMATION_SCHEMA表中查看详细信息 
+  * MySQL 通过锁机制来保证事务的隔离性
 * 持久性
   * 双InnoDB写缓冲区
   *  innodb_flush_log_at_trx_commit
@@ -36,6 +37,7 @@
   *  不间断电源（UPS）保护运行MySQL服务器并存储MySQL数据的所有计算机服务器和存储设备的电源
   *  备份策略，例如备份的频率和类型以及备份保留期
   *  对于分布式或托管数据应用程序，MySQL服务器的硬件所在的数据中心的特定特性，以及数据中心之间的网络连接
+  *  MySQL 使用 redo log 来保证事务的持久性
 
 ## InnoDB多版本
 > InnoDB是一个多版本的存储引擎。它保留有关已更改行的旧版本的信息，以支持事务功能，例如并发和回滚。此信息以称为回滚段的数据结构存储在系统表空间或撤消表空间中。
@@ -68,3 +70,7 @@
   * SELECT语句以非锁定方式执行，但是可能会使用行的早期版本。因此，使用此隔离级别，此类读取不一致。这也称为脏读 
 * SERIALIZABLE 可串行化
   *  此级别类似于REPEATABLE READ，但是InnoDB将所有普通SELECT 语句隐式转换为SELECT ... LOCK IN SHARE MODEif autocommit禁用。如果 autocommit启用，则 SELECT是其自身的事务。因此，它被认为是只读的，如果作为一致（非锁定）读取执行并且不需要阻塞其他事务，则可以序列化。（SELECT如果其他事务已修改所选行，则要强制平原 阻止，请禁用 autocommit。）
+
+## 参考文档
+* [事务及其特性](https://developer.ibm.com/zh/technologies/databases/articles/os-mysql-transaction-isolation-levels-and-locks/)
+* [The InnoDB Storage Engine](https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html)
