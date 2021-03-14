@@ -71,6 +71,13 @@
 * SERIALIZABLE 可串行化
   *  此级别类似于REPEATABLE READ，但是InnoDB将所有普通SELECT 语句隐式转换为SELECT ... LOCK IN SHARE MODEif autocommit禁用。如果 autocommit启用，则 SELECT是其自身的事务。因此，它被认为是只读的，如果作为一致（非锁定）读取执行并且不需要阻塞其他事务，则可以序列化。（SELECT如果其他事务已修改所选行，则要强制平原 阻止，请禁用 autocommit。）
 
+| 隔离级别 | 脏读 |不可重复读|幻读|
+| :----:| :----: |:----: |:----: |
+| 读未提交| 可以出现 |可以出现 | 可以出现 |
+| 读提交| 不允许出现 |可以出现 | 可以出现 |
+| 可重复读| 不允许出现 |不允许出现 | 可以出现 |
+| 可串行化| 不允许出现 |不允许出现 | 不允许出现 |
+
 ## 参考文档
 * [事务及其特性](https://developer.ibm.com/zh/technologies/databases/articles/os-mysql-transaction-isolation-levels-and-locks/)
 * [The InnoDB Storage Engine](https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html)
