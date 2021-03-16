@@ -78,6 +78,18 @@
 | 可重复读| 不允许出现 |不允许出现 | 可以出现 |
 | 可串行化| 不允许出现 |不允许出现 | 不允许出现 |
 
+## InnoDB锁
+* Shared and Exclusive Locks 共享锁和排他锁
+  * 共享（S）锁允许持有锁读取行的事务
+  * 独占（X）锁允许持有锁，更新或删除行的事务
+* Intention Locks 意向锁
+* Record Locks 记录锁
+* Gap Locks 间隙锁
+* Next-Key Locks 下一键锁
+* Insert Intention Locks 插入意图锁
+* AUTO-INC Locks 自动上锁
+
 ## 参考文档
 * [事务及其特性](https://developer.ibm.com/zh/technologies/databases/articles/os-mysql-transaction-isolation-levels-and-locks/)
 * [The InnoDB Storage Engine](https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html)
+* [InnoDB Locking](https://dev.mysql.com/doc/refman/5.6/en/innodb-locking.html)
