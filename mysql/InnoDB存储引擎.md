@@ -121,3 +121,4 @@
 * [事务及其特性](https://developer.ibm.com/zh/technologies/databases/articles/os-mysql-transaction-isolation-levels-and-locks/)
 * [The InnoDB Storage Engine](https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html)
 * [InnoDB Locking](https://dev.mysql.com/doc/refman/5.6/en/innodb-locking.html)
+* [Mysql锁](https://tech.youzan.com/seven-questions-about-the-lock-of-mysql/)
