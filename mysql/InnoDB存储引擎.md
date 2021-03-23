@@ -117,6 +117,17 @@
 * AUTO-INC Locks 自动上锁
   * 一个AUTO-INC锁是通过交易将与表中取得一个特殊的表级锁 AUTO_INCREMENT列。在最简单的情况下，如果一个事务正在向表中插入值，则任何其他事务都必须等待自己在该表中进行插入，以便第一个事务插入的行接收连续的主键值
 
+## InnoDB限制
+* 一个表最多可以包含1017列（在MySQL 5.6.9中从1000的限制中提高）
+* 一个表最多可以包含64个非聚集索引（二级索引）
+* 默认情况下，索引键前缀长度限制为767个字节
+* 多列索引最多允许16列。超过限制将返回错误
+* 除行外存储的任何可变长度列外，最大行大小略小于页面的一半。也就是说，默认页面大小为16KB，最大行大小约为8000字节
+* 尽管InnoDB内部支持大于65,535字节的行大小，但MySQL本身对所有列的组合大小强加了65,535的行大小限制
+* 在某些较旧的操作系统上，文件必须小于2GB。这不是InnoDB限制。如果您需要一个大型系统表空间，请使用几个较小的数据文件（而不是一个大型数据文件）进行配置，或者在每个表的数据文件之间分配表数据
+* InnoDB日志文件的 最大总大小为512GB
+* 最小表空间大小略大于10MB。最大表空间大小取决于 InnoDB页面大小
+
 ## 参考文档
 * [事务及其特性](https://developer.ibm.com/zh/technologies/databases/articles/os-mysql-transaction-isolation-levels-and-locks/)
 * [The InnoDB Storage Engine](https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html)
