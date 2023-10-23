@@ -143,7 +143,7 @@
 * 代码加密
 #### 类型
 * Bootstrap ClassLoader c++实现
-* java.lang.ClassLoader java内部实现、
+* java.lang.ClassLoader java内部实现
 #### 分类
 * 启动类加载器（Bootstrap ClassLoader）
 * 扩展类加载器（Extension ClassLoader）
