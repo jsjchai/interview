@@ -3,6 +3,7 @@
 * 引入了var关键字
 * CMS，即并发标记扫描垃圾收集器，现已弃用且不支持
 * 新增String方法，如 isBlank()、lines()、repeat(n)、stripLeading()、stripTrailing() 和 strip()
+* HTTP Client 标准化
 * ZGC
   
 ## [jvm](https://docs.oracle.com/javase/specs/jvms/se11/jvms11.pdf)
