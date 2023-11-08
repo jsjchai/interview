@@ -129,3 +129,18 @@
 
 ![image](https://github.com/jsjchai/interview/assets/13389058/36fc4aff-f879-4cf4-b7ed-a91b96283902)
 
+### [end-to-end exactly-once](https://medium.com/codex/how-we-almost-achieve-end-to-end-exactly-once-processing-with-flink-28d2c013b5c1)
+> 保证每一条消息只被流处理系统处理一次
+* 异步和增量
+  * checkpoint-快照机制能够保证作业出现 fail-over 后可以从最新的快照进行恢复
+* 两阶段提交
+  * 在 Flink 中两阶段提交的实现方法被封装到了 TwoPhaseCommitSinkFunction 这个抽象类中
+     * beginTransaction 在开启事务之前，我们在目标文件系统的临时目录中创建一个临时文件，后面在处理数据时将数据写入此文件
+     * preCommit 在预提交阶段，刷写（flush）文件，然后关闭文件，之后就不能写入到文件了，我们还将为属于下一个检查点的任何后续写入启动新事务
+     * commit 在提交阶段，我们将预提交的文件原子性移动到真正的目标目录中，请注意，这会增加输出数据可见性的延迟
+     * abort 在中止阶段，我们删除临时文件
+### Flink-Kafka Exactly-once
+* 一旦 Flink 开始做 checkpoint 操作，那么就会进入 pre-commit 阶段，同时 Flink JobManager 会将检查点 Barrier 注入数据流中
+* 当所有的 barrier 在算子中成功进行一遍传递，并完成快照后，则 pre-commit 阶段完成
+* 等所有的算子完成“预提交”，就会发起一个“提交”动作，但是任何一个“预提交”失败都会导致 Flink 回滚到最近的 checkpoint
+* pre-commit 完成，必须要确保 commit 也要成功，上图中的 Sink Operators 和 Kafka Sink 会共同来保证
